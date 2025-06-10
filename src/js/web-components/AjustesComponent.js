@@ -20,24 +20,36 @@ class AjustesComponent extends HTMLElement {
                     font-style: normal;
                 }
                 ul {
+                    min-width: 220px;
                     background: #5AB1BB;
                     list-style-type: none;
                     padding: 1em;
-                    border-radius: 8px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: start;
+                    align-items: flex-start;
                 }
                 li {
-                    color: #000;
-                    font-family: 'Coolvetica', 'Roboto', 'Times Sans Serif' Arial, sans-serif;
                     margin-bottom: 0.5em;
-                }
+                    }
                 a {
-                    color: inherit;
+                    color: #000;
+                    font-size: 1.3em;
+                    font-family: 'Coolvetica', 'Roboto', 'Times Sans Serif' Arial, sans-serif;
                     text-decoration: none;
+                    cursor: pointer;
+                    padding: 0.7em 2em;
+                    display: block;
+                    transition: background 0.2s;
+                }
+                a:hover {
+                    background: #4e6766;
+                    color: #fff;
                 }
             </style>
             <ul>
                 <li><a href="color-fuente">Color de fuente</a></li>
-                <li><a href="dolor-fondo">Color de fondo</a></li>
+                <li><a href="color-fondo">Color de fondo</a></li>
                 <li><a href="tamano-fuente">Tamaño de fuente</a></li>
                 <li><a href="tipo-fuente">Tipo de fuente</a></li>
             </ul>
