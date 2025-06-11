@@ -5,6 +5,9 @@
     --verde: #A5C882;
     --amarillo: #F7DD72;
 }
+body, body * {
+    color: var(--color-fuente-global, #000) !important;
+}
 body {
     width: 100vw;
     min-width: 100vw;

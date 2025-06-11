@@ -21,7 +21,7 @@ class AjustesComponent extends HTMLElement {
                 }
                 ul {
                     min-width: 220px;
-                    background: #5AB1BB;
+                    background: #4E6766;
                     list-style-type: none;
                     padding: 1em;
                     display: flex;
@@ -33,13 +33,13 @@ class AjustesComponent extends HTMLElement {
                     margin-bottom: 0.5em;
                     }
                 a {
-                    color: #000;
                     font-size: 1.3em;
                     font-family: 'Coolvetica', 'Roboto', 'Times Sans Serif' Arial, sans-serif;
                     text-decoration: none;
                     cursor: pointer;
                     padding: 0.5em 1em;
                     display: block;
+                    transition: background 0.2s;
                 }
                 color-fuente {
                     display: none;
@@ -48,20 +48,22 @@ class AjustesComponent extends HTMLElement {
                     display: block;
                     cursor: pointer;
                     padding: 0.7em 2em;
-                    display: block;
                     transition: background 0.2s;
                 }
                 a:hover {
-                    background: #4e6766;
+                    background:rgb(58, 67, 65);
                     color: #fff;
                 }
             </style>
             <ul>
                 <li>
                     <a id="opc-color-fuente">Color de fuente</a>
-                    <color-fuente></color-fuente>
+                    <color-selector tipo="texto" class="submenu"></color-selector>
                 </li>
-                <li><a href="color-fondo">Color de fondo</a></li>
+                <li>
+                    <a id="opc-color-fondo">Color de fondo</a>
+                    <color-selector tipo="fondo" class="submenu"></color-selector>
+                </li>
                 <li><a href="tamano-fuente">Tamaño de fuente</a></li>
                 <li><a href="tipo-fuente">Tipo de fuente</a></li>
             </ul>
@@ -69,21 +71,35 @@ class AjustesComponent extends HTMLElement {
     }
 
     connectedCallback(){
+        const ajustesMenu = this.shadowRoot.querySelector('ul');
         const opcionColorFuente = this.shadowRoot.getElementById('opc-color-fuente');
-        const popupColorFuente = this.shadowRoot.querySelector('color-fuente');
+        const opcionColorFondo = this.shadowRoot.getElementById('opc-color-fondo');
+        const selectorColorFuente = opcionColorFuente.nextElementSibling;
+        const selectorColorFondo = opcionColorFondo.nextElementSibling;
 
         opcionColorFuente.addEventListener('click', (e) => {
             e.preventDefault();
+            selectorColorFuente.classList.toggle('active');
+            selectorColorFondo.classList.toggle('active');
+        });
+
+        opcionColorFondo.addEventListener('click', (e) => {
+            e.preventDefault();
+            selectorColorFondo.classList.toggle('active');
+            selectorColorFuente.classList.toggle('active');
+        })
+
+        ajustesMenu.addEventListener('mousedown', (e) => {
             e.stopPropagation();
-            popupColorFuente.classList.toggle('active');
         });
 
         document.addEventListener('mousedown', (e) => {
             if (
-                popupColorFuente.classList.contains('active') &&
+                (selectorColorFuente.classList.contains('active') || selectorColorFondo.classList.contains('active')) &&
                 !this.shadowRoot.contains(e.target)
             ) {
-                popupColorFuente.classList.remove('active');
+                selectorColorFuente.classList.remove('active');
+                selectorColorFondo.classList.remove('active');
             }
         });
 
