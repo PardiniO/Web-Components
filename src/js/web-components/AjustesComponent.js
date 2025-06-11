@@ -37,7 +37,6 @@ class AjustesComponent extends HTMLElement {
                     font-size: 1.3em;
                     font-family: 'Coolvetica', 'Roboto', 'Times Sans Serif' Arial, sans-serif;
                     text-decoration: none;
-                    font-size: 1.2em;
                     cursor: pointer;
                     padding: 0.5em 1em;
                     display: block;
@@ -82,7 +81,7 @@ class AjustesComponent extends HTMLElement {
         document.addEventListener('mousedown', (e) => {
             if (
                 popupColorFuente.classList.contains('active') &&
-                !this.shadowRoot.contains.apply(e.target)
+                !this.shadowRoot.contains(e.target)
             ) {
                 popupColorFuente.classList.remove('active');
             }
