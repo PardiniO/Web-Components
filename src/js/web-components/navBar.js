@@ -20,20 +20,22 @@ class NavBar extends HTMLElement {
                     font-style: normal;
                 }
                 nav {
+                    width: 100%;
+                    max-width: 100vw;
                     height: 80px;
-                    padding: 1;
                     background: #4E6766;
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: space-evenly;
                     align-items: center;
                 }
                 ul {
+                    width: 100%;
                     margin: 0;
                     list-style-type: none;
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: space-evenly;
                     align-items: center;
-                    gap: 15em;
+                    gap: 6em;
                 }
                 li {
                     display: inline;
@@ -41,19 +43,18 @@ class NavBar extends HTMLElement {
                 a {
                     text-decoration: none;
                     color: black;
-                    font-size: 1rem;
+                    font-size: 1.5em;
                     font-family: 'Coolvetica', 'Times Sans Serif', 'Roboto', Arial, sans-serif;
                     cursor: pointer;
                 }
                 #ajustes-popup {
                     display:none;
-                    position: absolute;
-                    top: 60px;
-                    right: 20px;
-                    background: #5AB1BB;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                    position: fixed;
+                    top: 80px;
+                    right: 2em;
                     z-index: 100;
+                    max-height: 520px;
+                    
                 }
                 #ajustes-popup.active {
                     display: block;
