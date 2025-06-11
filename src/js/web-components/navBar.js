@@ -23,7 +23,7 @@ class NavBar extends HTMLElement {
                     width: 100%;
                     max-width: 100vw;
                     height: 80px;
-                    background: #4E6766;
+                    background: #1E152A;
                     display: flex;
                     justify-content: space-evenly;
                     align-items: center;
@@ -41,8 +41,8 @@ class NavBar extends HTMLElement {
                     display: inline;
                     }
                 a {
+                    color: withe;
                     text-decoration: none;
-                    color: black;
                     font-size: 1.5em;
                     font-family: 'Coolvetica', 'Times Sans Serif', 'Roboto', Arial, sans-serif;
                     cursor: pointer;
