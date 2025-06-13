@@ -62,9 +62,7 @@ class AjustesComponent extends HTMLElement {
                 <div class="section">
                     <button class="toggle" data-target="font">Tipo de fuente</button>
                     <div class="content" data-type="font">
-                        <option value="Roboto">Roboto</option>
-                        <option value="Coolvetica">Coolvetica</option>
-                        <option value="Times Sans Serif">Times Sans Serif</option>
+                        <font-type-selector data-target="--nav-font-type"></font-type-selector>
                     </div>
                 </div>
             </div>
