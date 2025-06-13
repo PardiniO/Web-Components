@@ -40,3 +40,5 @@ class FontTypeSelector extends HTMLElement {
         });
     }
 }
+customElements.define('font-type-selector', FontTypeSelector);
+export { FontTypeSelector };

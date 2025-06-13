@@ -6,6 +6,8 @@ class ColorSelector extends HTMLElement {
     }
     
     connectedCallback() {
+        const target = this.getAttribute('data-target') || '--nav-text-color';
+
         this.shadowRoot.innerHTML = `
             <style>
                 .wrapper {
@@ -54,5 +56,5 @@ class ColorSelector extends HTMLElement {
         });
     }
 }
-
-customElements.define('color-fuente', ColorSelector);
+customElements.define('color-selector', ColorSelector);
+export { ColorSelector };

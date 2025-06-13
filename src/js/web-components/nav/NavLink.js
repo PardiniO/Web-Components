@@ -28,3 +28,5 @@ class NavLink extends HTMLElement {
         `;
     }
 }
+customElements.define('nav-link', NavLink);
+export { NavLink };

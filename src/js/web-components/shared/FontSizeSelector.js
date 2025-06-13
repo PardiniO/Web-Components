@@ -109,3 +109,5 @@ class FontSizeSelector extends HTMLElement {
         });
     }
 }
+customElements.define('font-size-selector', FontSizeSelector);
+export { FontSizeSelector };

@@ -41,6 +41,9 @@ class AjustesComponent extends HTMLElement {
                 }
             </style>
             <div class="panel">
+                <button id="ajustes-btn">
+
+                </button>
                 <div class="section">
                     <button class="toggle" data-target="text">Color de texto</button>
                     <div class="content" data-type="text">
@@ -83,5 +86,5 @@ class AjustesComponent extends HTMLElement {
         });
     }
 }
-
-customElements.define( 'ajustes-component', AjustesComponent)
+customElements.define('ajustes-component', AjustesComponent);
+export { AjustesComponent };
