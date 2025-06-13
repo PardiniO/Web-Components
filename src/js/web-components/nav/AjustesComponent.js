@@ -2,107 +2,87 @@ class AjustesComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
+    }
+    
+    connectedCallback(){
         this.shadowRoot.innerHTML = `
             <style>
-                @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-                @font-face {
-                    font-family: 'Coolvetica';
-                    src: url('/fonts/coolvetica.woff2') format('woff2'),
-                        url('/fonts/coolvetica.woff') format('woff');
-                    font-weight: normal;
-                    font-style: normal;
+                .panel {
+                    padding: 1rem;
+                    border: 1px solid #ccc;
+                    background: #f9f9f9;
+                    width: 100%;
+                    max-width: 400px;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+                    font-family: 'Roboto', sans-serif;
                 }
-                @font-face {
-                    font-family: 'Times Sans Serif';
-                    src: url('/fonts/times-sans-serif.woff2') format('woff2'),
-                        url('/fonts/times-sans-serif.woff') format('woff');
-                    font-weight: normal;
-                    font-style: normal;
+                .section {
+                    margin-bottom: 1rem;
                 }
-                ul {
-                    min-width: 220px;
-                    background: #4E6766;
-                    list-style-type: none;
-                    padding: 1em;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: start;
-                    align-items: flex-start;
-                }
-                li {
-                    margin-bottom: 0.5em;
-                    }
-                a {
-                    font-size: 1.3em;
-                    font-family: 'Coolvetica', 'Roboto', 'Times Sans Serif' Arial, sans-serif;
-                    text-decoration: none;
+                .toggle {
+                    background: none;
+                    border: none;
+                    font-weight: bold;
+                    font-size: 1rem;
+                    width: 100%;
+                    text-align: left;
                     cursor: pointer;
-                    padding: 0.5em 1em;
-                    display: block;
-                    transition: background 0.2s;
+                    padding: 0.5rem;
+                    cursor: pointer;
+                    border-bottom: 1px solid #ddd;
                 }
-                color-fuente {
+                .content {
                     display: none;
+                    padding: 0.5rem;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                 }
-                color-fuente.active {
+                .content.active {
                     display: block;
-                    cursor: pointer;
-                    padding: 0.7em 2em;
-                    transition: background 0.2s;
-                }
-                a:hover {
-                    background:rgb(58, 67, 65);
-                    color: #fff;
                 }
             </style>
-            <ul>
-                <li>
-                    <a id="opc-color-fuente">Color de fuente</a>
-                    <color-selector tipo="texto" class="submenu"></color-selector>
-                </li>
-                <li>
-                    <a id="opc-color-fondo">Color de fondo</a>
-                    <color-selector tipo="fondo" class="submenu"></color-selector>
-                </li>
-                <li><a href="tamano-fuente">Tamaño de fuente</a></li>
-                <li><a href="tipo-fuente">Tipo de fuente</a></li>
-            </ul>
-        `
-    }
-
-    connectedCallback(){
-        const ajustesMenu = this.shadowRoot.querySelector('ul');
-        const opcionColorFuente = this.shadowRoot.getElementById('opc-color-fuente');
-        const opcionColorFondo = this.shadowRoot.getElementById('opc-color-fondo');
-        const selectorColorFuente = opcionColorFuente.nextElementSibling;
-        const selectorColorFondo = opcionColorFondo.nextElementSibling;
-
-        opcionColorFuente.addEventListener('click', (e) => {
-            e.preventDefault();
-            selectorColorFuente.classList.toggle('active');
-            selectorColorFondo.classList.toggle('active');
+            <div class="panel">
+                <div class="section">
+                    <button class="toggle" data-target="text">Color de texto</button>
+                    <div class="content" data-type="text">
+                        <color-selector data-target="--nav-text-color"></color-selector>
+                    </div>
+                </div>
+                <div class="section">
+                    <button class="toggle" data-target="background">Color de fondo</button>
+                    <div class="content" data-type="background">
+                        <color-selector data-target="--nav-background-color"></color-selector>
+                    </div>
+                </div>
+                <div class="section">
+                    <button class="toggle" data-target="size">Tamaño de fuente</button>
+                    <div class="content" data-type="size">
+                        <font-size-selector data-target="--nav-font-size"></font-size-selector>
+                    </div>
+                </div>
+                <div class="section">
+                    <button class="toggle" data-target="font">Tipo de fuente</button>
+                    <div class="content" data-type="font">
+                        <option value="Roboto">Roboto</option>
+                        <option value="Coolvetica">Coolvetica</option>
+                        <option value="Times Sans Serif">Times Sans Serif</option>
+                    </div>
+                </div>
+            </div>
+            `
+        
+        this.shadowRoot.querySelectorAll('.toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const target = button.dataset.target;
+                this.shadowRoot.querySelectorAll('.content').forEach(content => {
+                    content.classList.toggle('active', content.dataset.type === target);
+                });
+            });
         });
 
-        opcionColorFondo.addEventListener('click', (e) => {
-            e.preventDefault();
-            selectorColorFondo.classList.toggle('active');
-            selectorColorFuente.classList.toggle('active');
-        })
-
-        ajustesMenu.addEventListener('mousedown', (e) => {
-            e.stopPropagation();
+        const fontSelector = this.shadowRoot.querySelector('font-size-selector');
+        fontSelector.addEventListener('change', (e) => {
+            document.documentElement.style.setProperty('--nav-font-size', e.detail.value);
         });
-
-        document.addEventListener('mousedown', (e) => {
-            if (
-                (selectorColorFuente.classList.contains('active') || selectorColorFondo.classList.contains('active')) &&
-                !this.shadowRoot.contains(e.target)
-            ) {
-                selectorColorFuente.classList.remove('active');
-                selectorColorFondo.classList.remove('active');
-            }
-        });
-
     }
 }
 

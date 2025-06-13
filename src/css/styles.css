@@ -1,12 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@font-face {
+    font-family: 'Coolvetica';
+    src: url('/fonts/coolvetica.woff2') format('woff2'),
+        url('/fonts/coolvetica.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Times Sans Serif';
+    src: url('/fonts/times-sans-serif.woff2') format('woff2'),
+        url('/fonts/times-sans-serif.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+                }
+
 :root {
     --dark-purple: #1E152A;
     --fondo: #4E6766;
     --celeste: #5AB1BB;
     --verde: #A5C882;
     --amarillo: #F7DD72;
-}
-body, body * {
-    color: var(--color-fuente-global, #000) !important;
+    --nav-text-color: black;
+    --nav-background-color: white;
+    --nav-font-size: 18px;
+    --nav-font-family: sans-serif, 'Roboto', 'Coolvetica', 'Times Sans Serif';
 }
 body {
     width: 100vw;
@@ -17,5 +34,4 @@ body {
     padding: 0; 
     box-sizing: border-box;
     overflow-x: hidden;
-    font-family: 'Roboto', sans-serif;
 }
