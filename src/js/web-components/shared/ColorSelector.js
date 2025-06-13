@@ -44,7 +44,7 @@ class ColorSelector extends HTMLElement {
             </div>
         `;
         
-        this.shadowRoot.querySelectorAll('.button[data-color]').forEach(button => {
+        this.shadowRoot.querySelectorAll('button[data-color]').forEach(button => {
             button.addEventListener('click', () => {
                 const color = button.getAttribute('data-color');
                 document.documentElement.style.setProperty(target, color);

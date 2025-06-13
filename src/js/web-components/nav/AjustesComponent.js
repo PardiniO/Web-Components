@@ -81,9 +81,11 @@ class AjustesComponent extends HTMLElement {
         });
 
         const fontSelector = this.shadowRoot.querySelector('font-size-selector');
-        fontSelector.addEventListener('change', (e) => {
-            document.documentElement.style.setProperty('--nav-font-size', e.detail.value);
-        });
+        if (fontSelector) {
+            fontSelector.addEventListener('change', (e) => {
+                document.documentElement.style.setProperty('--nav-font-size', e.detail.size);
+            });
+        }
     }
 }
 customElements.define('ajustes-component', AjustesComponent);

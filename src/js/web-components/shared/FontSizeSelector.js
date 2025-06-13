@@ -64,8 +64,8 @@ class FontSizeSelector extends HTMLElement {
             <div class="wrapper">
                 <div class="quick-access">
                     <button data-size="14">Pequeña</button>
-                    <button data-size="18">Mediana</button>
-                    <button data-size="22">Grande</button>
+                    <button data-size="22">Mediana</button>
+                    <button data-size="42">Grande</button>
                 </div>
                 <div class="slider">
                     <input type="range" min="8" max="72" value="${defaultSize}" />
