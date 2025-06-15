@@ -39,11 +39,16 @@ class AjustesComponent extends HTMLElement {
                 .content.active {
                     display: block;
                 }
+                #reset-btn {
+                    border: none;
+                    background: transparent;
+                    padding: 0.5rem 1rem;
+                    cursor: pointer;
+                    font-size: 1rem;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+                }
             </style>
             <div class="panel">
-                <button id="ajustes-btn">
-
-                </button>
                 <div class="section">
                     <button class="toggle" data-target="text">Color de texto</button>
                     <div class="content" data-type="text">
@@ -65,8 +70,11 @@ class AjustesComponent extends HTMLElement {
                 <div class="section">
                     <button class="toggle" data-target="font">Tipo de fuente</button>
                     <div class="content" data-type="font">
-                        <font-type-selector data-target="--nav-font-type"></font-type-selector>
+                        <font-type-selector data-target="--nav-font-family"></font-type-selector>
                     </div>
+                </div>
+                <div class="section">
+                    <button id="reset-btn">Restablecer</button>
                 </div>
             </div>
             `
@@ -86,6 +94,17 @@ class AjustesComponent extends HTMLElement {
                 document.documentElement.style.setProperty('--nav-font-size', e.detail.size);
             });
         }
+
+        this.shadowRoot.getElementById('reset-btn').addEventListener('click', () => {
+            document.documentElement.style.setProperty('--nav-text-color', '#000');
+            document.documentElement.style.setProperty('--nav-background-color', '#fff');
+            document.documentElement.style.setProperty('--nav-font-size', '22px');
+            document.documentElement.style.setProperty('--nav-font-type', "'Roboto', 'Coolvetica', 'Times Sans Serif'");
+
+            this.shadowRoot.querySelectorAll('.content').forEach(content => {
+                content.reset && content.reset();
+            });
+        });
     }
 }
 customElements.define('ajustes-component', AjustesComponent);

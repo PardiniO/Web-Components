@@ -4,8 +4,14 @@ class FontTypeSelector extends HTMLElement {
         this.attachShadow({ mode: 'open' });
     }
 
-    connectedCallBack() {
-        const target = this.getAttribute('data-target') || '--nav-font-type';
+    connectedCallback() {
+        const target = this.getAttribute('data-target') || '--nav-font-family';
+
+        const fontMap = {
+            'roboto': "'Roboto', sans-serif",
+            'coolvetica': "'Coolvetica', calibri",
+            'times-sans-serif': "'Times Sans Serif', 'Times New Roman'"
+        };
 
         this.shadowRoot.innerHTML = `
             <style>
@@ -17,14 +23,14 @@ class FontTypeSelector extends HTMLElement {
                     font-family: inherit;
                     cursor: pointer;
                 }
-                option {
-                    font-family: 'Times Sans Serif';
+                option[value="times-sans-serif"] {
+                    font-family: 'Times Sans Serif', 'Times New Roman';
                 }
                 option[value="roboto"] {
-                    font-family: roboto;
+                    font-family: 'Roboto', sans-serif;
                 }
                 option[value="coolvetica"] {
-                    font-family: coolvetica;
+                    font-family: 'Coolvetica', calibri;
                 }
             </style>
             <select>
@@ -35,8 +41,10 @@ class FontTypeSelector extends HTMLElement {
         `;
 
         const select = this.shadowRoot.querySelector('select');
+
         select.addEventListener('change', (e) => {
-            document.documentElement.style.setProperty(target, e.target.value);
+            const fontValue = fontMap[e.target.value] || fontMap['roboto'];
+            document.documentElement.style.setProperty(target, fontValue);
         });
     }
 }

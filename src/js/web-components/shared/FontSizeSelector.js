@@ -7,8 +7,7 @@ class FontSizeSelector extends HTMLElement {
 
     connectedCallback() {
         const target = this.getAttribute('data-target') || '--nav-font-size';
-        const defaultSize = 18;
-
+        const defaultSize = 22;
         this.shadowRoot.innerHTML = `
             <style>
                 .wrapper {

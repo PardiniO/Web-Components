@@ -17,8 +17,8 @@
 :root {
     --nav-text-color: black;
     --nav-background-color: white;
-    --nav-font-size: 18px;
-    --nav-font-family: sans-serif, 'Roboto', 'Coolvetica', 'Times Sans Serif';
+    --nav-font-size: 22px;
+    --nav-font-family: 'Roboto', 'Coolvetica', 'Times Sans Serif', sans-serif;
 }
 body {
     width: 100vw;
@@ -29,4 +29,9 @@ body {
     padding: 0; 
     box-sizing: border-box;
     overflow-x: hidden;
+    font-family: var(--nav-font-family, 'Roboto', sans-serif);
+}
+
+header {
+    font-family: var(--nav-font-family, 'Roboto', sans-serif);
 }

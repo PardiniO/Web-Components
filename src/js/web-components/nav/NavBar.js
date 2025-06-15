@@ -21,6 +21,7 @@ class NavBar extends HTMLElement {
                     align-items: center;
                     padding: 1rem;
                     flex-wrap: wrap;
+                    position: relative;
                 }
                 .links {
                     display: flex;
@@ -34,8 +35,11 @@ class NavBar extends HTMLElement {
                     cursor: pointer;
                 }
                 .ajustes-panel {
-                    width: 100%;
-                    margin-top: 0.5rem;
+                    position: fixed;
+                    top: 85px;
+                    right: 20px;
+                    width: 350px;
+                    margin-right: 20px;
                 }
                 @media (max-width: 600px) {
                     .navBar {
@@ -59,9 +63,9 @@ class NavBar extends HTMLElement {
                 <button id="ajustes-btn" title="Ajustes"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
                 </button>
-            </div>
-            <div class="ajustes-panel" style="display: none;">
-                <ajustes-component></ajustes-component>
+                <div class="ajustes-panel" style="display: none;">
+                    <ajustes-component></ajustes-component>
+                </div>
             </div>
         `
         const ajustesBtn = this.shadowRoot.getElementById('ajustes-btn');
